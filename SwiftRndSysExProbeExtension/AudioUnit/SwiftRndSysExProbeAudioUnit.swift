@@ -36,7 +36,7 @@ public final class SwiftRndSysExProbeAudioUnit: PluginAudioUnit, @unchecked Send
     func sendBurst() -> ProbeState {
         stateLock.withLock {
             let frames = _state.nextBurst()
-            let refused = sendSysEx(frames)
+            let refused = sendBurst(frames)
             _state.sent += frames.count - refused.count
             return _state
         }
